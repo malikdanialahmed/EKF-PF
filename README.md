@@ -9,6 +9,7 @@ This repository contains Python implementations of the Extended Kalman Filter (E
 ```
 ├── Dockerfile
 ├── requirements.txt
+├── results              # Genrated results 
 ├── README.md            # (this file)
 ├── localization.py      # Main entry point for running single-run experiments
 ├── ekf.py               # Extended Kalman Filter implementation
@@ -108,7 +109,7 @@ This script evaluates the performance of the Extended Kalman Filter (EKF) under 
 
 Batch-run EKF experiments under two modes:
 
--   **Part B**: Vary both measurement and filter noise factors (`r`) over `[1/64, 1/16, 1/4, 4, 16, 64]`:
+-   **Part B**: Vary both data-factor and filter-factor (`r`) over `[1/64, 1/16, 1/4, 4, 16, 64]`:
 
     ```bash
     python ekf_experiments.py --mode b
@@ -116,11 +117,16 @@ Batch-run EKF experiments under two modes:
 
     **Output:**
 
-    -   `ekf_part_b_all_metrics.png`
     -   `ekf_part_b_mean_position_error.png`
     -   `ekf_part_b_mean_mahalanobis_error.png`
     -   `ekf_part_b_anees.png`
-
+ 
+    if you want to check the result at specific noise level use this command:
+      ```bash
+    python localization.py ekf --data-factor r --filter-factor r 
+    ```
+    here you can add the value of r which is the noise.
+     
 -   **Part C**: Vary only the filter noise (keeping data noise at default):
 
     ```bash
@@ -129,28 +135,10 @@ Batch-run EKF experiments under two modes:
 
     **Output:**
 
-    -   `ekf_part_c_all_metrics.png`
     -   `ekf_part_c_mean_position_error.png`
     -   `ekf_part_c_mean_mahalanobis_error.png`
     -   `ekf_part_c_anees.png`
 
-#### Part C: Vary only the filter noise (keeping measurement noise fixed)
-
-```bash
-python ekf_experiments.py --mode c
-```
-
-**Output:**
-
--   Same metrics as Part B
--   Generates:
-
-    -   `ekf_part_c_all_metrics.png`
-    -   Individual metric plots:
-
-        -   `ekf_part_c_mean_position_error.png`
-        -   `ekf_part_c_mean_mahalanobis_error.png`
-        -   `ekf_part_c_anees.png`
 
 **Tip:** Ensure all dependencies are installed (`numpy`, `matplotlib`).
 
@@ -158,7 +146,7 @@ python ekf_experiments.py --mode c
 
 Batch-run PF experiments under three modes:
 
--   **Part B**: Vary both measurement and filter noise:
+-   **Part B**: Both data and filter noise scale with r:
 
     ```bash
     python pf_experiments.py --mode b
@@ -166,11 +154,11 @@ Batch-run PF experiments under three modes:
 
     **Output:**
 
-    -   `pf_part_b_pos_error.png`
-    -   `pf_part_b_mahal_error.png`
+    -   `pf_part_b_position_error.png`
+    -   `pf_part_b_mahalanobis_error.png`
     -   `pf_part_b_anees.png`
 
--   **Part C**: Vary only the filter noise:
+-   **Part C**: Only filter noise is scaled, data is fixed:
 
     ```bash
     python pf_experiments.py --mode c
@@ -178,8 +166,8 @@ Batch-run PF experiments under three modes:
 
     **Output:**
 
-    -   `pf_part_c_pos_error.png`
-    -   `pf_part_c_mahal_error.png`
+    -   `pf_part_c_position_error.png`
+    -   `pf_part_c_mahalanobis_error.png`
     -   `pf_part_c_anees.png`
 
 -   **Part D**: Vary measurement/filter noise and number of particles (`[20, 50, 500]`):
@@ -219,10 +207,20 @@ A Docker image ensures a consistent environment across platforms.
         docker run --rm ekf_pf_suite:latest python ekf_experiments.py --mode b
         ```
 
-    - **Specify mode interactively**:
+        ```bash
+        docker run --rm ekf_pf_suite:latest python ekf_experiments.py --mode c
+        ```
+
+    - **PF experiments**:
 
         ```bash
         docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode d
+        ```
+        ```bash
+        docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode b
+        ```
+        ```bash
+        docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode c
         ```
 
     - **Mount a host directory** for results/logs:
