@@ -226,6 +226,14 @@ A Docker image ensures a consistent environment across platforms.
         docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode c
         ```
 
+        ```bash
+        docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode b
+        ```
+
+        ```bash
+        docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode c
+        ```
+
     - **Mount a host directory** for results/logs:
 
         ```bash
