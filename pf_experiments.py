@@ -67,11 +67,11 @@ def run_experiment(mode):
 
         # Plot separately
         plot_metrics(r_values, [mean_errors], ['Mean Position Error'],
-                     f'PF Part {mode.upper()} - Position Error', f'pf_part_{mode}_pos_error.png')
+                    f'PF Part {mode.upper()} - Position Error', f'pf_part_{mode}_pos_error.png')
         plot_metrics(r_values, [mean_mahal], ['Mean Mahalanobis Error'],
-                     f'PF Part {mode.upper()} - Mahalanobis Error', f'pf_part_{mode}_mahal_error.png')
+                    f'PF Part {mode.upper()} - Mahalanobis Error', f'pf_part_{mode}_mahal_error.png')
         plot_metrics(r_values, [mean_anees], ['ANEES'],
-                     f'PF Part {mode.upper()} - ANEES', f'pf_part_{mode}_anees.png')
+                    f'PF Part {mode.upper()} - ANEES', f'pf_part_{mode}_anees.png')
 
     elif mode == 'd':
         all_errors = []
@@ -91,11 +91,11 @@ def run_experiment(mode):
 
         labels = [f'N = {n}' for n in particle_counts]
         plot_metrics(r_values, all_errors, labels,
-                     'PF Part D - Position Error vs r for Different Particle Counts',
-                     'pf_part_d_pos_error.png')
+                    'PF Part D - Position Error vs r for Different Particle Counts',
+                    'pf_part_d_pos_error.png')
         plot_metrics(r_values, all_anees, labels,
-                     'PF Part D - ANEES vs r for Different Particle Counts',
-                     'pf_part_d_anees.png')
+                    'PF Part D - ANEES vs r for Different Particle Counts',
+                    'pf_part_d_anees.png')
 
 
 if __name__ == "__main__":
