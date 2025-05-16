@@ -50,7 +50,7 @@ def plot_metrics(r_vals, metric_sets, labels, title, filename):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(filename)
+    plt.savefig("./results/{filename}")
     plt.show()
 
 

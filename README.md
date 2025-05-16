@@ -9,7 +9,7 @@ This repository contains Python implementations of the Extended Kalman Filter (E
 ```
 ├── Dockerfile
 ├── requirements.txt
-├── results              # Genrated results 
+├── results              # Genrated results
 ├── README.md            # (this file)
 ├── localization.py      # Main entry point for running single-run experiments
 ├── ekf.py               # Extended Kalman Filter implementation
@@ -120,13 +120,15 @@ Batch-run EKF experiments under two modes:
     -   `ekf_part_b_mean_position_error.png`
     -   `ekf_part_b_mean_mahalanobis_error.png`
     -   `ekf_part_b_anees.png`
- 
+
     if you want to check the result at specific noise level use this command:
-      ```bash
-    python localization.py ekf --data-factor r --filter-factor r 
+
+    ```bash
+    python localization.py ekf --data-factor r --filter-factor r
     ```
+
     here you can add the value of r which is the noise.
-     
+
 -   **Part C**: Vary only the filter noise (keeping data noise at default):
 
     ```bash
@@ -138,7 +140,6 @@ Batch-run EKF experiments under two modes:
     -   `ekf_part_c_mean_position_error.png`
     -   `ekf_part_c_mean_mahalanobis_error.png`
     -   `ekf_part_c_anees.png`
-
 
 **Tip:** Ensure all dependencies are installed (`numpy`, `matplotlib`).
 
@@ -216,9 +217,19 @@ A Docker image ensures a consistent environment across platforms.
         ```bash
         docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode d
         ```
+
         ```bash
         docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode b
         ```
+
+        ```bash
+        docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode c
+        ```
+
+        ```bash
+        docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode b
+        ```
+
         ```bash
         docker run --rm ekf_pf_suite:latest python pf_experiments.py --mode c
         ```

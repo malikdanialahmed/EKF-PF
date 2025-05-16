@@ -66,7 +66,7 @@ def run_experiments(mode='b'):
     plt.title(f'Part {mode.upper()} - Mean Position Error vs Noise Factor')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'ekf_part_{mode}_mean_position_error.png')
+    plt.savefig(f'./results/ekf_part_{mode}_mean_position_error.png')
     plt.show()
 
     # Plot 2: Mean Mahalanobis Error
@@ -78,7 +78,7 @@ def run_experiments(mode='b'):
     plt.title(f'Part {mode.upper()} - Mean Mahalanobis Error vs Noise Factor')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'ekf_part_{mode}_mean_mahalanobis_error.png')
+    plt.savefig(f'./results/ekf_part_{mode}_mean_mahalanobis_error.png')
     plt.show()
 
     # Plot 3: ANEES
@@ -90,7 +90,7 @@ def run_experiments(mode='b'):
     plt.title(f'Part {mode.upper()} - ANEES vs Noise Factor')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'ekf_part_{mode}_anees.png')
+    plt.savefig(f'./results/ekf_part_{mode}_anees.png')
     plt.show()
 
 
